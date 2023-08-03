@@ -77,7 +77,7 @@ def rewrite_history(
     max_hour = 23
     if business_hours:
         days = [day for day in days if day.weekday() < 5]
-        min_hour = 9
+        min_hour = 8
         max_hour = 17
     elif no_business_hours:
         min_hour = 18
@@ -151,13 +151,13 @@ def main() -> None:
     parser.add_argument(
         "--business-hours",
         action="store_true",
-        help="Backdate to business hours: Mon–Fri, 9–17",
+        help="Backdate to business hours: Mon-Fri, 8-18",
         default=False,
     )
     parser.add_argument(
         "--no-business-hours",
         action="store_true",
-        help="Backdate to outside business hours: 19–23, every day of the week",
+        help="Backdate to outside business hours: 19-24, every day of the week",
         default=False,
     )
     args = parser.parse_args()

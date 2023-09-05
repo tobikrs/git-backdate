@@ -98,6 +98,7 @@ def rewrite_history(
     duration = len(days)
     commit_count = len(commits)
     commits_per_day = math.ceil(commit_count / duration)
+    day_progress = 0
     for commit_index in range(commit_count):
         progress = (commit_index + 1) / commit_count
         # first, choose the date

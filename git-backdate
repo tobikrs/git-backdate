@@ -108,13 +108,17 @@ def rewrite_history(
             day_progress = 0
         day_progress += 1
 
+        _min_hour = min_hour
+        if commit_index == 0 and last_timestamp:
+            _min_hour = last_timestamp.hour
+        
         # if we only have one commit per day at most, we can use the whole day.
         # otherwise, we need to limit the time range further to avoid collisions.
         if commits_per_day <= 1:
             _max_hour = max_hour
         else:
-            _max_hour = min_hour + int(
-                (max_hour - min_hour) * (day_progress / commits_per_day)
+            _max_hour = _min_hour + int(
+                (max_hour - _min_hour) * (day_progress / commits_per_day)
             )
 
         timestamp = _get_timestamp(
